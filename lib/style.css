@@ -1,0 +1,439 @@
+@font-face {
+    font-family: 'QsLight';
+    src: url('../lib/fonts/Quicksand-Light.otf') format('opentype');
+}    
+@font-face {    
+    font-family: 'QsRegular';
+    src: url('../lib/fonts/Quicksand-Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'QsBold';
+    src: url('../lib/fonts/Quicksand-Bold.otf') format('opentype');
+}
+/*z-index index*//*
+z-index:1       ; kaart
+z-index:2       ; markers    
+z-index:3       ; marker textbubles
+z-index:10      ; mapUI
+z-index:15      ; pop-up infopanel
+z-index:18      ; delete marker check
+z-index:-1, 20  ; loader/saver animatie
+*/
+html{
+    font-family: 'QsRegular';
+}
+body{
+    background-color: #EEE;
+}
+
+/*Container voor alle app elementen*/
+div.container_MapApp{
+    position: relative;
+    background-color: rgba(255,255,255,0.0);
+    width: 700px;
+    height: 350px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*Eind container voor alle app elementen*/
+
+/*Map elementen*/
+    div.container_Map{
+        position: absolute;
+        width: inherit;
+        height: 350px;
+        overflow: hidden;
+        z-index: 1;
+    }
+    div.map_Bounds{
+        position: absolute;
+        display: block;
+        width: 2000px;
+        height: 1500px;
+    }
+    img.map_Image{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    /*Markers*/
+        div.container_Marker{
+            position: absolute;
+            z-index:2;
+        }
+        div.marker_Info{
+            position: relative;
+            display: none;
+            overflow: hidden;
+            white-space: nowrap;
+            width: auto;
+            background-color: #EEE;
+            z-index: 3;
+        }
+        span.marker_Text, span.marker_EmptyText{
+            position: relative;
+            display: inline-block;
+            font-size: 14pt;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        span.marker_Text{
+            color: #000;
+        }
+        span.marker_EmptyText{
+            color: #AAA;
+        }
+        div.marker_Button{
+            position: absolute;
+            display: block;
+            background-color:  rgba(0,0,0,0.0);
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            cursor: pointer;
+        }
+        div.marker_ActionDel{
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("../lib/img/cross_16x16.png");
+            width: 16px;
+            height: 16px;
+            margin-top: -5px;
+            margin-left: 2px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        img.marker_Marker{
+            position: absolute;
+            height: 40px;
+            width: 20px;
+            top: 32px;
+            left: 26px;
+            cursor: pointer;
+        }
+    /*Eind markers*/
+/*Eind map elementen*/
+
+/*Map UI elementen*/
+    div.container_MapUI{
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        z-index: 10;
+    }
+    /*scrollbars*/
+        div.mapUI_ScrollHorz{
+            position: absolute;
+            overflow: hidden;
+            background-color: rgba(100,100,100,0.6);
+            width: 581px;
+            height: 16px;
+            top: 330px;
+            left: 59px;
+        }
+        div.mapUI_ScrollVert{
+            position: absolute;
+            overflow: hidden;
+            background-color: rgba(100,100,100,0.6);
+            width: 16px;
+            height: 231px;
+            top: 59px;
+            left: 680px;
+        }
+        div.scroll_HorzHolder{
+            position: absolute;
+            width: 960px;
+        }
+        div.scroll_VertHolder{
+            position: absolute;
+            height: 390px;
+        }
+        div.scroll_HorzDragger{
+            position: absolute;
+            width: 200px;
+            height:14px;
+            left: 380px;
+            top: 1px;
+            background-color: rgba(255,255,255,0.7);
+            cursor: pointer;
+        }
+        div.scroll_VertDragger{
+            position: absolute;
+            width: 14px;
+            height: 70px;
+            left: 1px;
+            top: 160px;
+            background-color: rgba(255,255,255,0.7);
+            cursor: pointer;
+        }
+    /*einde scrollbars*/
+    
+    /*muisposities*/ /*worden niet weergegeven, voor ontwikkel-doeleinden */
+/*        div.mapUI_MouseXY, div.mapUI_LastClickedXY{
+            position: absolute;
+            display: inline-block;
+            background-color: #FBFBFB;
+            border: 1px solid #CCC;
+            font-family: 'QsRegular';
+            text-align: center;
+            font-size: 10pt;
+            padding: 4px;
+            width: 120px;
+            top: 4px;
+        }
+        div.mapUI_MouseXY{
+            left: 4px;
+        }
+        div.mapUI_LastClickedXY{
+            left: 138px;
+        }*/
+    /*einde muisposities*/
+    
+    /*addMarker Knop*/
+        div.mapUI_AddMarkerButton, div.mapUI_AddMarker{
+            position: absolute;
+            display: inline-block;
+            width: 194px;
+            height: 26px;
+        }
+        div.mapUI_AddMarkerButton{
+            background-color:  rgba(0,0,0,0.0);
+            left: 501px;
+            top: 5px;
+            cursor: pointer;
+        }
+        div.mapUI_AddMarker{
+            background-color: #F6F6F6;
+            border: 1px solid #DDD;
+            vertical-align: middle;
+            left: 500px;
+            top: 4px;
+        }
+        span.mapUI_AddMarkerText{
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 10pt;
+            color: #111;
+            margin-top: 1px;
+            margin-left: 4px;
+            margin-right: 4px;
+        }   
+        div.mapUI_AddMarkerImg{
+            position: relative;
+            display: inline-block;
+            background-image: url("../lib/img/plus_16x16.png");
+            vertical-align: middle;
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            margin-left: 6px;
+        }
+    /*Eind AddMarker Knop*/
+    
+    /*marker delete-check*/
+    #delete_MarkerCheck{
+        position: absolute;
+        display: none;
+        width: inherit;
+        height: 350px;
+        z-index: 18;
+        background-color: rgba(255,255,255,0.6);
+    }
+    div.delete_CheckCenter{
+        position: relative;
+        background-color:  #F6F6F6;
+        border: 1px solid #999;
+        width: 200px;
+        margin-left: -100px;
+        left: 50%;
+        height: 60px;
+        margin-top: -30px;
+        top: 50%;
+        
+    }
+    span.check_Text{
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        margin: 4px;
+        font-size: 8pt;
+        color: #111;
+    }
+    div.check_ActionDelete, div.check_ActionCancel{
+        position: absolute;
+        background-color:  #FFF;
+        border: 1px solid #DDD;
+        text-align: center;
+        width: 80px;
+        height: 16px;
+        font-size: 8pt;
+        color: #000;
+        cursor: pointer;
+    }
+    div.check_ActionDelete{
+        left: 16px;
+    }
+    div.check_ActionCancel{
+        left: 104px;
+    }
+    /*Eind marker delete-check*/
+/*Eind map UI elementen*/
+
+/*infoPanel*/
+    div.container_Info{
+        position: absolute;
+        display: none;
+        background-color: rgba(0,0,0,0.8);
+        width: inherit;
+        height: inherit;
+        z-index: 15;
+    }
+    div.info_Exit{
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 22px;
+        border-radius: 2px;
+        background-color: #FFF;
+        top: 20px;
+        left: 660px;
+        cursor: pointer;
+    }
+    img.info_ExitCross{
+        position: absolute;
+        display: block;
+        top: 2px;
+        left: 2px;
+    }
+    div.info_CollapsableContainer{
+        position: relative;
+        display: none;
+        left: 20px;
+        top: 40px;
+        width: 660px;
+    }
+    /*titel*/
+        div.info_Title{
+            position: relative;
+            display: block;
+            background-color: #ececec;
+            vertical-align: middle;
+            height: 40px;
+        }
+        span.title_Text{
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            font-family: 'QsBold';
+            font-size: 20pt;
+            color: #000;
+            margin-left: 7px;
+            margin-top: 2px;
+            float: left;
+        }
+        div.info_ActionEdit{
+            position: relative;
+            display: inline-block;
+            background-image: url("../lib/img/edit_32x32.png");
+            width: 34px;
+            height: 34px;
+            margin-top: 3px;
+            margin-right: 4px;
+            float: right;
+            cursor: pointer;
+        }
+    /*Eind titel*/
+    
+    /*info textpanel*/
+        div.info_TextField{
+            position: relative;
+            display: block;
+            background-color: #FFF;
+            height: 226px;
+        }
+        div.info_Content{
+            font-size: 11pt;
+            height: 218px;
+            width: 652px;
+            padding-top: 4px;
+            padding-left: 8px;
+        }
+    /*Eind info textpanel*/
+    
+    /*formulier voor edit van title en content*/
+        input.title{
+            font-family: 'QsRegular';
+            border: 1px solid #CCC;
+            font-size: 14pt;
+            width: 280px;
+            height: 28px;
+            margin-top: 4px;
+            margin-left: 4px;
+        }
+        div.info_Save, div.info_Cancel{
+            position: absolute;
+            background-color: #F6F6F6;
+            border: 1px solid #DDD;
+            text-align: center;
+            width: 100px;
+            height: 20px;
+            font-size: 10pt;
+            color: #000;
+            cursor: pointer;
+            top: 4px;
+        }
+        div.info_Save{
+            left: 450px;
+        }
+        div.info_Cancel{
+            left: 554px;
+        }
+        textarea.content{
+            resize: none;
+            font-family: 'QsRegular';
+            border: 1px solid #CCC;
+            font-size: 10pt;
+            width: 648px;
+            height: 212px;
+            margin-top: 4px;
+            margin-left: 4px;
+        }
+    /*Eind formulier voor edit van title en content*/
+    
+    /*info bar, puur esthetisch*/
+        div.info_Bar{
+            position: relative;
+            display: block;
+            background-color: #CCC;
+            height: 16px;
+        }
+    /*Eind info bar*/
+/*Eind infoPanel*/
+
+/*loader*/
+    #loader{
+        position: absolute;
+        display: inline;
+        width: inherit;
+        height: 350px;
+        z-index: -1;
+        background-color: rgba(0,0,0,0.0);
+    }
+    img.loader{
+        position: relative;
+        display: block;
+        width: 88px;
+        height: 10px;
+        top: 20px;
+        left: 20px;
+    }
+/*Eind loader*/

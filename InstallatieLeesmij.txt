@@ -1,0 +1,49 @@
+//->>MapApp gemaakt door Bastiaan de Jong<<-\\
+
+DISCLAIMER:
+
+De volgende externe assets zijn gebruikt:
+
+//gebruikte externe plugins (dit is de enige 'niet-zelf-geschreven' code)
+https://github.com/mvlandys/jquery.dragscrollable
+
+//gebruikte externe grafische assets
+http://www.easyvectors.com/browse/other/europ_map
+http://gemicon.net/
+http://www.fontsquirrel.com/fonts/quicksand
+http://preloaders.net/
+
+
+
+INSTALLATIE:
+
+Maak de tabel in mapapp_nl_1.sql aan en geef een gebruiker rechten voor SELECT, INSERT, UPDATE, DELETE statements op die tabel.
+In de __contruct() functie van lib/DbHandler.php wordt de connectie gemaakt, voeg hier de gebruiker, wachtwoord en de database toe.
+Installatie is nu voltooid
+
+open demo.php om de app te bekijken
+
+
+GEBRUIKERSFUNCTIES:
+
+-alle markers zijn versleepbaar
+-de 'een marker toevoegen' knop rechts boven voegt een nieuwe marker toe,
+    deze wordt automatisch linksonder die knop op de kaart toegevoegd.
+-bij een mouseover-event op een marker komt een textbuble tevoorschijn
+-bij een klik op de text in de textbuble van de marker komt een infopanel naar voren
+-de gegevens in dit panel zijn aan te passen door te klikken op het editIcoontje rechts bovenin
+
+
+
+DOEL VAN DE APP:
+
+Het doel was een intuïtieve interface te creëren voor een simpele minimalistische kaart app.
+Hiermee geef ik een blik op wat ik op dit moment als webdeveloper kan met de kennis die ik heb.
+De MapApp is (nog) geen direct bruikbare app, het doel was om de code minimaal te houden,
+optimalisatie, errorlogging en beveiliging van de database zijn daarom minimaal.
+
+
+
+CODE door:
+Bastiaan de Jong
+bastiaan_sierd@hotmail.com
